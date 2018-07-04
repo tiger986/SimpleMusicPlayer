@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+}
+
+.box{
+    width: 700px;
+    height: 550px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.box_text{
+    width: 700px;
+    height: 50px;
+}
+.box_text_con{
+    width: 700px;
+    height: 50px;
+    font-size: 24px;
+    color: pink;
+    line-height: 50px;
+    text-align: center;
+}
+
+.box_box{
+    width: 700px;
+    overflow: hidden;
+}
+.box_con{
+    width: 118px;
+    height: 118px;
+    float: left;
+    margin: 45px 0 0 45px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-size: 118px 118px;
+    overflow: hidden;
+    position: relative;
+}
+.box_con img{
+    display: block;
+    width: 118px;
+    height: 118px;
+}
+.box_con_btn{
+    width: 118px;
+    height: 118px;
+    background-color: rgba(0,0,0,0.5);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.box_con_btn p{
+    width: 30px;
+    height: 33px;
+    margin: 42px auto 0;
+    background: url("img/play11.png") no-repeat center;
+    background-size: 26px 29px;
+    cursor: pointer;
+}
+.box_con_btn p:hover{
+    background-size: 30px 33px;
+}
+.box_con_btn .play{
+    width: 26px;
+    height: 31px;
+    margin: 43px auto 0;
+    background: url("img/play22.png") no-repeat center;
+    background-size: 22px 27px;
+}
+.box_con_btn .play:hover{
+    background-size: 26px 31px;
+}
+
+.rotate {
+    -webkit-animation: rotating 1.2s linear infinite;
+    -moz-animation: rotating 1.2s linear infinite;
+    -o-animation: rotating 1.2s linear infinite;
+    animation: rotating 1.2s linear infinite;
+}
+
+@-webkit-keyframes rotating {
+    from { -webkit-transform: rotate(0) }
+    to { -webkit-transform: rotate(360deg) }
+}
+
+@keyframes rotating {
+    from { transform: rotate(0) }
+    to { transform: rotate(360deg) }
+}
+@-moz-keyframes rotating {
+    from { -moz-transform: rotate(0) }
+    to { -moz-transform: rotate(360deg) }
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+    <div class="box" ms-controller = "index">
+        <div class="box_text">
+            <p class="box_text_con" ms-html="audioName"></p>
+        </div>
+
+        <div class="box_box">
+            <div class="box_con" ms-repeat="info">
+                <img ms-attr-src="el.img" />
+                <audio ms-attr-id="$index" ms-attr-src="el.src"></audio>
+                <div class="box_con_btn">
+                    <p ms-click="playAudio($index)"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+<script>
+    require(["index"], function(model){
+        // 播放一个audio时，将其他的(正在播放的)暂停
+
+        // var audios = document.getElementsByTagName("audio");
+        // 给play事件绑定暂停函数
+        /*[].forEach.call(audios, function (i) {
+            console.log(i);
+            i.addEventListener("play", pauseAll.bind(i));
+        });*/
+
+        //因为audio标签是avalon循环出来的，若加载页面就获取会获取不到(avalon未渲染完成)，所以要延时获取，包括循环给所有的audio添加监听事件也要延时处理
+        var  audios;
+        setTimeout(function(){
+            audios = document.getElementsByTagName("audio");
+
+            [].forEach.call(audios, function (i) {
+                console.log(i);
+                i.addEventListener("play", pauseAll.bind(i)); //监听开始播放
+                i.addEventListener('ended',audioEnded,false); //监听播放完成
+            });
+        }, 1000);
+
+
+        // 暂停函数
+        function pauseAll() {
+            var self = this;
+            [].forEach.call(audios, function (i) {
+                // 将audios中其他的audio全部暂停
+                //i !== self && i.pause();
+                // 将audios中其他的audio全部停止
+                if(i !== self){
+                    i.currentTime = 0;
+                    i.pause();
+                }
+            })
+        }
+
+        function audioEnded(){
+            if(model.audioId != 11){
+                model.playAudio(model.audioId + 1);
+            }else{
+                $("#" + model.audioId).next().find("p").removeClass("play");
+                $("#" + model.audioId).prev().removeClass("rotate");
+            }
+        }
+
+        avalon.scan();
+    });
+</script>
+<script>
+
+</script>
